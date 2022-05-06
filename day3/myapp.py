@@ -1,6 +1,6 @@
+from urllib import response
 import requests
 import json
-
 URL = "http://127.0.0.1:8000/studentapi/"
 
 def get_data(id = None):
@@ -11,4 +11,17 @@ def get_data(id = None):
     res = requests.get(url=URL, data=json_data)
     data = res.json()
     print(data)
-get_data(1)
+#get_data(1)
+
+def post_data():
+    data = {
+        'name':'Hari',
+        'roll':601,
+        'city':'Birgunge'
+    }
+    json_data = json.dumps(data)
+    response = requests.post(url=URL, data=json_data)
+
+    data = response.json()
+    print(data)
+post_data()
