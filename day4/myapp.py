@@ -11,20 +11,20 @@ def get_data(id = None):
     res = requests.get(url=URL, data=json_data)
     data = res.json()
     print(data)
-get_data(2)
+#get_data(2)
 
 #For Data Create:
 def post_data():
     data = {
-        'name':'Lalit Saud',
-        'roll':1,
-        'city':'Kathmandu'
+        'name':'lalit',
+        'roll':36,
+        'city':'ktm'
     }
     json_data = json.dumps(data)
     response = requests.post(url=URL, data=json_data)
     data = response.json()
     print(data)
-# post_data()
+#post_data()
 
 #For Update Data....(partial=True in serializer data for partial update),
 #  and(partial=True remove in serializer data for complete data)
@@ -44,10 +44,10 @@ def update_data():
 # For Delete data.....
 def delete_data():
     data = {
-        'id':6
+        'id':9
     }
     json_data = json.dumps(data)
     response = requests.delete(url=URL, data=json_data)
     data = response.json()
     print(data)
-# delete_data()
+delete_data()

@@ -1,8 +1,14 @@
+from wsgiref.validate import validator
 from rest_framework import serializers
 from .models import Student
 
+# Validators....
+def start_with_l(value):
+    if value[0].lower() != 'l':
+        raise serializers.ValidationError('Name should be start with L')
+
 class StudentSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
+    name = serializers.CharField(max_length=100, validators=[start_with_l])
     roll = serializers.IntegerField()
     city = serializers.CharField(max_length=100)
 
@@ -16,3 +22,27 @@ class StudentSerializer(serializers.Serializer):
         instance.city = validated_data.get('city', instance.city)
         instance.save()
         return instance
+
+    #Validation are manly three types:
+    #1. field lavel validations ,
+    #2. object lavel validations and 
+    #3. validators
+    ## Priority::::: validators > field level validations > object level validations
+
+
+    #Field lavel validation
+    def validate_roll(self, value):
+        if value >200:
+            raise serializers.ValidationError('Admission seat is full!!!')
+        return value
+
+    #object lavel validation
+    def validate(self, data):
+        name = data.get('name')
+        city = data.get('city')
+        if name.lower() == 'lalit' and city.lower() != 'delhi':
+            raise serializers.ValidationError('city must be delhi....')
+        return data
+        
+
+
