@@ -24,19 +24,19 @@ class StudentSerializer(serializers.Serializer):
         return instance
 
     #Validation are manly three types:
-    #1. field lavel validations ,
-    #2. object lavel validations and 
+    #1. field level validations ,
+    #2. object level validations and 
     #3. validators
     ## Priority::::: validators > field level validations > object level validations
 
 
-    #Field lavel validation
+    #Field level validation
     def validate_roll(self, value):
         if value >200:
             raise serializers.ValidationError('Admission seat is full!!!')
         return value
 
-    #object lavel validation
+    #object level validation
     def validate(self, data):
         name = data.get('name')
         city = data.get('city')
