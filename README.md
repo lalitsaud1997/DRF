@@ -1,5 +1,6 @@
 # Django-REST-framework
  Django-REST-framework Tutorial
+ Django REST framework is a powerful and flexible toolkit for building Web APIs.
 
 #Serializers
 1. model object - single student data.
